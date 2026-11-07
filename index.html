@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>الشروق لمواد البناء - حاسبة الرسوم</title>
+    <meta name="theme-color" content="#000000">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Tajawal', 'sans-serif'],
+            },
+            colors: {
+              glass: {
+                border: 'rgba(255, 255, 255, 0.2)',
+                surface: 'rgba(255, 255, 255, 0.08)',
+                highlight: 'rgba(255, 255, 255, 0.4)',
+              }
+            },
+            animation: {
+              'float': 'float 12s ease-in-out infinite',
+              'float-slow': 'float 18s ease-in-out reverse infinite',
+              'shimmer': 'shimmer 3s linear infinite',
+              'scale-in': 'scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'orb-breath': 'orbBreath 4s ease-in-out infinite',
+              'pulse-soft': 'pulseSoft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translate(0, 0)' },
+                '50%': { transform: 'translate(10px, -15px)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-200% 0' },
+                '100%': { backgroundPosition: '200% 0' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              orbBreath: {
+                '0%, 100%': { transform: 'scale(1)', opacity: '0.5' },
+                '50%': { transform: 'scale(1.1)', opacity: '0.8' },
+              },
+              pulseSoft: {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0.7' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --bg-color: #F5F5F7;
+        --text-color: #1d1d1f;
+      }
+      .dark {
+        --bg-color: #050505;
+        --text-color: #f5f5f7;
+      }
+      
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Premium Crystal Glass Material */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(60px) saturate(160%);
+        -webkit-backdrop-filter: blur(60px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 
+          0 10px 40px -10px rgba(0, 0, 0, 0.08),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.3),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+      }
+      
+      .dark .glass-panel {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 
+          0 20px 50px -10px rgba(0, 0, 0, 0.7),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+      }
+
+      /* Metallic Mesh Background */
+      .aurora-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: 
+          radial-gradient(at 0% 0%, rgba(200, 200, 210, 0.3) 0%, transparent 60%),
+          radial-gradient(at 100% 0%, rgba(210, 220, 240, 0.3) 0%, transparent 60%),
+          radial-gradient(at 100% 100%, rgba(220, 210, 230, 0.3) 0%, transparent 60%),
+          radial-gradient(at 0% 100%, rgba(210, 230, 220, 0.3) 0%, transparent 60%);
+        opacity: 0.8;
+      }
+      .dark .aurora-bg {
+        background: 
+          radial-gradient(at 0% 0%, rgba(30, 40, 60, 0.5) 0%, transparent 70%),
+          radial-gradient(at 100% 0%, rgba(40, 30, 50, 0.5) 0%, transparent 70%),
+          radial-gradient(at 50% 100%, rgba(20, 20, 30, 0.8) 0%, transparent 70%);
+        opacity: 1;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 0px; background: transparent; }
+      
+      /* Input clean up */
+      input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="transition-colors duration-1000 ease-in-out">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
